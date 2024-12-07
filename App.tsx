@@ -1,46 +1,45 @@
-
 import React from 'react';
-import { SafeAreaView, StatusBar, StyleSheet, Text, useColorScheme, View } from 'react-native';
-import LoginScreen from './Modulos/ModuloUsuarios/LoginScreen'; // Asegúrate de que este archivo existe y contiene tu formulario de login
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-const App: React.FC = () => {
-  const isDarkMode = useColorScheme() === 'dark';
+import LoginScreen from './Modulos/ModuloUsuarios/LoginScreen';
+import RegisterScreenPart1 from './Modulos/ModuloUsuarios/RegisterScreenPart1';
+import WelcomeScreen from './Modulos/ModuloUsuarios/WelcomeScreen';
+import LoadingScreen from './Modulos/LoadingScreen';
+import Estaciones from './Modulos/ModuloEstaciones/Estaciones';
+import HomeScreen from './Modulos/HomeScreen';
+import Catalogo from './Modulos/ModuloAlquiler/CatalogoBicicletas';
+import Detalle from './Modulos/ModuloAlquiler/DetalletaAlquiler';
+import Carrito from './Modulos/ModuloAlquiler/CartITem';
 
-  // Estilos dinámicos según el modo oscuro/claro
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? '#000' : '#fff',  // Puedes ajustar estos colores
-  };
+const Stack = createNativeStackNavigator();
+
+const App = () => {
   return (
-    <SafeAreaView style={[styles.container, backgroundStyle]}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <View style={styles.content}>
-        <Text style={[styles.title, { color: isDarkMode ? '#fff' : '#000' }]}>
-          Bienvenido a mi App
-        </Text>
-        <LoginScreen /> {}
-      </View>
-    </SafeAreaView>
+    <NavigationContainer>
+       <Stack.Navigator initialRouteName="Loading" screenOptions={{ headerShown: false }}>
+      <Stack.Screen
+          name="Login"
+          component={LoginScreen}
+          options={{ title: 'Inicio de Sesión' }}
+        />
+         <Stack.Screen name="Loading" component={LoadingScreen} />
+        <Stack.Screen
+          name="RegisterPart1"
+          component={RegisterScreenPart1}
+          options={{ title: 'Registro - Parte 1' }}
+        />
+         <Stack.Screen name="Welcome" component={WelcomeScreen} />
+<Stack.Screen name="Estacion" component={Estaciones}/>
+
+<Stack.Screen name="Home" component={HomeScreen}/>
+<Stack.Screen name="Catalogo" component={Catalogo}/>
+<Stack.Screen name="Detalle" component={Detalle}/>
+<Stack.Screen name="Carrito" component={Carrito}/>
+      </Stack.Navigator>
+
+    </NavigationContainer>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  content: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 20,
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 20,
-  },
-});
 
 export default App;
