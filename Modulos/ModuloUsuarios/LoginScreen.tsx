@@ -7,6 +7,8 @@ import { RootParamList } from './Navigation/RootParamList';
 const LoginScreen: React.FC = () => {
   const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
+  const [showPassword, setShowPassword] = useState<boolean>(false);
+  const [rememberMe, setRememberMe] = useState<boolean>(false);
   const [error, setError] = useState<string>('');
   const navigation = useNavigation<NavigationProp<RootParamList>>();
 
@@ -29,48 +31,80 @@ const LoginScreen: React.FC = () => {
       source={require('../images/Frame9.png')} // Asegúrate de que la ruta sea válida
       style={stylelogin.background}
     >
-      <View style={stylelogin.overlay}>  
+      <View style={stylelogin.overlay}>
         {/* Imagen centrada antes del título */}
-        <View >
-          <Image 
+        <View>
+          <Image
             source={require('../images/Frame2rueda.png')} // Reemplaza con la ruta de tu imagen
             style={stylelogin.image}
           />
         </View>
 
         <Text style={stylelogin.title}>Bienvenido de nuevo</Text>
-        
+        <Text style={stylelogin.tit}>Entra a tu cuenta</Text>
         {error ? <Text style={stylelogin.error}>{error}</Text> : null}
-        
-        <TextInput
-          style={stylelogin.input}
-          placeholder="Correo electrónico"
-          value={username}
-          onChangeText={setUsername}
-          keyboardType="email-address"
-        />
-        
-        <TextInput
-          style={stylelogin.input}
-          placeholder="Contraseña"
-          secureTextEntry
-          value={password}
-          onChangeText={setPassword}
-        />
-        
+
+        {/* Input de correo con ícono */}
+        <View style={stylelogin.inputContainer}>
+          <Image
+            source={require('../images/icons/user.png')}
+            style={stylelogin.icon}
+          />
+          <TextInput
+            style={stylelogin.input}
+            placeholder="treisychenoa@gmail.com"
+            value={username}
+            onChangeText={setUsername}
+            keyboardType="email-address"
+            placeholderTextColor="#aaa"
+          />
+        </View>
+
+        {/* Input de contraseña con ícono y botón de mostrar/ocultar */}
+        <View style={stylelogin.inputContainer}>
+          <Image
+            source={require('../images/icons/lock.png')} // Ruta a tu ícono de candado
+            style={stylelogin.icon}
+          />
+          <TextInput
+            style={stylelogin.input}
+            placeholder="*********"
+            secureTextEntry={!showPassword}
+            value={password}
+            onChangeText={setPassword}
+            placeholderTextColor="#aaa"
+          />
+          <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
+            <Image
+  source={
+    showPassword
+      ? require('../images/icons/eye.png') // Ruta al ícono para mostrar contraseña
+      : require('../images/icons/eye-off.png') // Ruta al ícono para ocultar contraseña
+  }
+  style={stylelogin.icon}
+/>
+          </TouchableOpacity>
+        </View>
         <View style={stylelogin.optionsContainer}>
-          <TouchableOpacity style={stylelogin.rememberMeContainer}>
-            <Text style={stylelogin.rememberMeText}>Recuérdame</Text>
+          <TouchableOpacity style={stylelogin.rememberMeContainer} onPress={() => setRememberMe(!rememberMe)}>
+           <Image
+              source={rememberMe
+                ? require('../images/icons/checked.png') // Ícono cuando "Recuérdame" está seleccionado
+                : require('../images/icons/unchecked.png') // Ícono cuando "Recuérdame" no está seleccionado
+              }
+              style={stylelogin.icon}
+            />
+            <Text style={stylelogin.rememberMeText}> Recuérdame</Text>
           </TouchableOpacity>
           <TouchableOpacity>
             <Text style={stylelogin.forgotPasswordText}>¿Olvidaste la contraseña?</Text>
           </TouchableOpacity>
         </View>
-        
+
         <TouchableOpacity style={stylelogin.botonentrar} onPress={handleLogin}>
           <Text style={stylelogin.botonText}>Entrar</Text>
         </TouchableOpacity>
-        
+
         <TouchableOpacity onPress={() => navigation.navigate('RegisterPart1')}>
           <Text style={stylelogin.registerText}>¿Todavía no tienes una cuenta? Regístrate</Text>
         </TouchableOpacity>

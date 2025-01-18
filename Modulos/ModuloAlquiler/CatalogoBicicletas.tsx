@@ -18,23 +18,26 @@ const bikeData = [
 const BikeRentalScreen: React.FC = () => {
     const navigation = useNavigation<NavigationProp<RootParamList>>();
   // Manejo de la selección de tab
+
   const handleTabPress = (tab: string) => {
     console.log(`Tab seleccionado: ${tab}`);
+    // Aquí puedes agregar lógica según la tab seleccionada, como navegar a diferentes pantallas
     switch (tab) {
       case 'home':
         navigation.navigate('Home');
         break;
       case 'support':
-        // Lógica para la pestaña de soporte
+        navigation.navigate('Support')
         break;
       case 'bikes':
-        navigation.navigate('Catalogo'); // Ejemplo de navegación a la pantalla de bicicletas
+        // Lógica para la pestaña de bicicletas
+        navigation.navigate('Catalogo'); // Ejemplo de navegación
         break;
       case 'discounts':
-        // Lógica para la pestaña de descuentos
+      navigation.navigate('Descuento');
         break;
       case 'profile':
-        // Lógica para la pestaña de perfil
+       navigation.navigate('Profile');
         break;
       default:
         break;
@@ -52,7 +55,7 @@ const handleReserveBike = (bikeName: string) => {
       <Text style={styles.bikeName}>{item.name}</Text>
       <Text style={styles.bikePrice}>{item.price}</Text>
       <TouchableOpacity style={styles.reserveButton} onPress={() => handleReserveBike(item.name)}>
-        <Text style={styles.plusSign}>+</Text>
+        <Text style={styles.plusSign}> +</Text>
       </TouchableOpacity>
     </View>
   );
@@ -184,6 +187,7 @@ const styles = StyleSheet.create({
   },
   plusSign: {
     color: '#fff',
+    width:20,
     fontSize: 24,
     fontWeight: 'bold',
   },

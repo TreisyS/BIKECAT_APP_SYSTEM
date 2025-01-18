@@ -1,6 +1,4 @@
-import { StyleSheet } from 'react-native';
-
-const stylelogin = StyleSheet.create({
+import { StyleSheet } from 'react-native'; const stylelogin = StyleSheet.create({
     background: {
         flex: 1,
         resizeMode: 'cover', // Ajusta la imagen al tamaño del contenedor
@@ -14,11 +12,31 @@ const stylelogin = StyleSheet.create({
         padding: 16,
         paddingTop: 30, // Baja el contenido 30 unidades
     },
+    inputContainer: {
+        flexDirection: "row",
+        alignItems: "center",
+        borderWidth: 1,
+        borderColor: "#ccc",
+        borderRadius: 8,
+        paddingHorizontal: 10,
+        marginBottom: 15,
+        backgroundColor: "#fff",
+        width: "80%", // Ajusta el ancho del contenedor del input
+    },
+    tit:{
+fontSize:14,
+        textAlign: 'center',
+        marginBottom: 40,
+        color: '#fff',
+    },
+    icon: {
+        marginRight: 10,
+    },
     title: {
         fontSize: 24,
         fontWeight: 'bold',
         textAlign: 'center',
-        marginBottom: 20,
+        marginBottom: 5,
         color: '#fff',
     },
     botonentrar: {
@@ -29,8 +47,8 @@ const stylelogin = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         marginTop: 20,
-        marginBottom: 20, // Espacio extra debajo del botón
-        width: '90%', // Ancho del botón ajustado al 90% del contenedor
+        marginBottom: 5, // Espacio extra debajo del botón
+        width: '55%', // Ancho del botón ajustado al 80% del contenedor
     },
     botonText: {
         color: 'white', // Color del texto
@@ -38,14 +56,10 @@ const stylelogin = StyleSheet.create({
         fontWeight: 'bold',
     },
     input: {
+        flex: 1,
         height: 40,
-        borderColor: 'gray',
-        borderWidth: 1,
-        marginBottom: 10,
-        paddingLeft: 8,
-        borderRadius: 4,
-        backgroundColor: '#fff',
-        width: '90%', // Ancho del input ajustado al 90% del contenedor
+        fontSize: 16,
+        color: '#333',
     },
     error: {
         color: 'red',
@@ -55,16 +69,16 @@ const stylelogin = StyleSheet.create({
     optionsContainer: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        marginBottom: 20,
-        width: '90%', // Asegura que los elementos estén alineados correctamente
+        marginBottom: 50,
+        width: '80%', // Asegura que los elementos estén alineados correctamente
     },
     rememberMeContainer: {
         flexDirection: 'row',
         alignItems: 'center',
     },
-    image:{
-        marginTop:75,
-        marginBottom: 30
+    image: {
+        marginTop: 120,
+        marginBottom: 30,
     },
     rememberMeText: {
         color: '#fff',

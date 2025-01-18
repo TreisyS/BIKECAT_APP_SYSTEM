@@ -7,7 +7,7 @@ import { useNavigation, NavigationProp } from '@react-navigation/native';
 import { RootParamList } from '../ModuloAlquiler/RoomParamList';
 
 
-const BikeCartScreen: React.FC = () => {
+const BikeModCancScreen: React.FC = () => {
   const navigation = useNavigation<NavigationProp<RootParamList>>();
   const [category, setCategory] = useState<string>('MTB');
   const [quantity, setQuantity] = useState<number>(1);
@@ -39,15 +39,51 @@ const BikeCartScreen: React.FC = () => {
         break;
     }
   };
-  const handleBuyNow = () => {
-    Alert.alert('Compra realizada con éxito');
-  };
+const cancelarAhora = () => {
+  Alert.alert(
+    'Confirmar cancelación',
+    '¿Está seguro que desea cancelar esta reserva?',
+    [
+      {
+        text: 'No',
+        onPress: () => console.log('Cancelación cancelada'),
+        style: 'cancel',
+      },
+      {
+        text: 'Sí',
+        onPress: () => {
+          // Lógica para cancelar la reserva
+          console.log('Reserva cancelada');
+          // Puedes agregar aquí la acción para cancelar la reserva
+        },
+      },
+    ],
+    { cancelable: false }
+  );
+};
 
-  const handleAddToCart = () => {
-    navigation.navigate('Carrito');
-    Alert.alert('Bicicleta agregada al carrito');
-  };
-
+const modificarAhora = () => {
+  Alert.alert(
+    'Confirmar modificación',
+    '¿Está seguro que desea modificar esta reserva?',
+    [
+      {
+        text: 'No',
+        onPress: () => Alert.alert('Modificación cancelada'),
+        style: 'cancel',
+      },
+      {
+        text: 'Sí',
+        onPress: () => {
+          // Lógica para modificar la reserva
+          Alert.alert('Reserva modificada');
+          // Puedes agregar aquí la acción para modificar la reserva
+        },
+      },
+    ],
+    { cancelable: false }
+  );
+};
 
   return (
     <View style={styles.container}>
@@ -106,11 +142,11 @@ const BikeCartScreen: React.FC = () => {
  <View style={styles.actionsContainer}>
   <Text style={styles.totalCost}>Costo Total: RD$600.00</Text>
   <View style={styles.buttonContainer}>
-    <TouchableOpacity style={styles.buyButton} onPress={handleBuyNow}>
-      <Text style={styles.buyButtonText}>Comprar Ahora</Text>
+    <TouchableOpacity style={styles.buyButton} onPress={cancelarAhora}>
+      <Text style={styles.buyButtonText}>CANCELAR RESERVA</Text>
     </TouchableOpacity>
-    <TouchableOpacity style={styles.cartButton} onPress={handleAddToCart}>
-      <Text style={styles.cartButtonText}>Agregar al carrito</Text>
+    <TouchableOpacity style={styles.cartButton} onPress={modificarAhora}>
+      <Text style={styles.cartButtonText}>MODIFICAR RESERVA</Text>
     </TouchableOpacity>
   </View>
 </View>
@@ -199,14 +235,16 @@ const styles = StyleSheet.create({
   },
   buyButton: {
      backgroundColor: '#72cbaa',
-    paddingVertical: 15,
-    paddingHorizontal: 30,
+     width:150,
+    paddingVertical: 5,
+    paddingHorizontal: 10,
     borderRadius: 30,
     marginRight: 10,
+    alignItems:'center',
   },
   buyButtonText: {
     color: '#fff',
-    fontSize: 18,
+    fontSize: 14,
     fontWeight: 'bold',
   },
   cartButton: {
@@ -217,9 +255,9 @@ const styles = StyleSheet.create({
   },
   cartButtonText: {
     color: '#fff',
-    fontSize: 18,
+    fontSize: 14,
     fontWeight: 'bold',
   },
 });
 
-export default BikeCartScreen;
+export default BikeModCancScreen;

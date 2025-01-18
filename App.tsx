@@ -11,7 +11,11 @@ import HomeScreen from './Modulos/HomeScreen';
 import Catalogo from './Modulos/ModuloAlquiler/CatalogoBicicletas';
 import Detalle from './Modulos/ModuloAlquiler/DetalletaAlquiler';
 import Carrito from './Modulos/ModuloAlquiler/CartITem';
-
+import Support from './Modulos/ModuloAsistenciaCliente/ticketmenu';
+import Profile from './Modulos/ModuloUsuarios/ProfileScreen';
+import Descuento from './Modulos/ModuloAsistenciaCliente/promociones';
+import Ticket from './Modulos/ModuloAsistenciaCliente/abrirticket';
+import CancelarEditar from './Modulos/ModuloAlquiler/CancelarModificar';
 const Stack = createNativeStackNavigator();
 
 const App = () => {
@@ -36,6 +40,12 @@ const App = () => {
 <Stack.Screen name="Catalogo" component={Catalogo}/>
 <Stack.Screen name="Detalle" component={Detalle}/>
 <Stack.Screen name="Carrito" component={Carrito}/>
+<Stack.Screen name="Support" component={Support}/>
+<Stack.Screen name="Profile" component={Profile}/>
+<Stack.Screen name="Descuento" component={Descuento}/>
+<Stack.Screen name="Ticket" component={Ticket}/>
+<Stack.Screen name="CancelarEditar" component={CancelarEditar}/>
+
       </Stack.Navigator>
 
     </NavigationContainer>

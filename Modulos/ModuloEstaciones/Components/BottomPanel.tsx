@@ -1,37 +1,63 @@
 //Modulos/ModuloEstaciones/Components/BottomPanel.tsx
 
 import React from "react";
-import { View, TouchableOpacity, Text, StyleSheet, Image} from "react-native";
+import { View, Alert, TouchableOpacity, Text, StyleSheet, Image} from "react-native";
 import {BottomPanelProps } from "../interfacesEstaciones/BottomPanelProps";
 import { useNavigation, NavigationProp } from '@react-navigation/native';
 import { RootParamList } from "../../ModuloUsuarios/Navigation/RootParamList";  // Ajusta el camino si es necesario
-//import TopBar from '../Components/barrasuperior'; 
-const BottomPanel: React.FC<BottomPanelProps> = ({}) => {
+
+const BottomPanel: React.FC<BottomPanelProps> = ({
+  onFocusUserLocation,
+  onSwitchStation,
+  currentStationIndex,
+}) => {
+
+  const handleStartTrip = () => {
+  const stationNumber = currentStationIndex + 1; // La estación actual (1-indexed)
+  const message = `BIENVENIDO A LA ESTACIÓN DEL PARQUE ${stationNumber}`;
+  Alert.alert(
+    'Bienvenido', 
+    message,
+    [{ text: 'OK' }]
+  );
+};
+
  const navigation = useNavigation<NavigationProp<RootParamList>>();
 
   return (
     <View>
  <View style={styles.panel}>
-    <TouchableOpacity style={styles.button1}>
-      <Text style={styles.buttonText}>Mi ubicación</Text>
- <Image source={require('../../images/localizacion.png')} style={styles.iconc} />
-    </TouchableOpacity>  <TouchableOpacity style={styles.button1}>
-      <Text style={styles.buttonText}>Parque Mirador Sur</Text>
-      <Image source={require('../../images/arrow.png')} style={styles.icona} />
-    </TouchableOpacity>
+<TouchableOpacity style={styles.button1} onPress={onFocusUserLocation}>
+  <Text style={styles.buttonTextL}>Mi localización</Text>
+  <Image source={require('../../images/localizacion.png')} style={styles.iconc} />
+</TouchableOpacity>
 
-      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Home')}>
-<Image source={require('../../images/ii.png')} style={styles.iconb} />
-<Text style={styles.buttonText}>Comenzar mi viaje en bici</Text>
-<Image source={require('../../images/ddddddddddd.png')} style={styles.icon} />
-      </TouchableOpacity>
+     <TouchableOpacity style={styles.cambioEstacion} onPress={onSwitchStation}>
+  <Text style={styles.buttonTextP}>Selecciona Estación</Text>
+  <Image source={require('../../images/arrow.png')} style={styles.icona} />
+</TouchableOpacity>
+
+
+      <TouchableOpacity
+  style={styles.button}
+  onPress={() => {
+    handleStartTrip();
+    navigation.navigate('Home');
+  }}
+>
+  <Image source={require('../../images/ii.png')} style={styles.iconb} />
+  <Text style={styles.buttonText}>Comenzar mi viaje en bici</Text>
+  <Image source={require('../../images/ddddddddddd.png')} style={styles.icon} />
+</TouchableOpacity>
+
+
     </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  button1:{
+  cambioEstacion:{
  backgroundColor: "#ffff",
     padding: 15,
     margin:10,
@@ -39,6 +65,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flexDirection: 'row',
   },
+  button1:{backgroundColor: "#ffff",
+    padding: 15,
+    margin:10,
+    borderRadius: 35,
+    alignItems: "center",
+    flexDirection: 'row',},
     container: {
     flex: 1,
     justifyContent: 'center',
@@ -51,7 +83,7 @@ const styles = StyleSheet.create({
     bottom: 10,
     left: 10,
     right: 10,
-    backgroundColor: "#18204e9a",
+    backgroundColor: "#33343894",
     padding: 15,
     borderRadius: 15,
     shadowColor: "#000",
@@ -75,11 +107,23 @@ const styles = StyleSheet.create({
     height: 74,
 
   },
-  buttonText: {
+  buttonTextL: {
     color: "#00000",
     fontWeight: "bold",
     marginLeft: 20,
-    marginRight: 30
+    marginRight: 150,
+  },
+   buttonTextP: {
+    color: "#00000",
+    fontWeight: "bold",
+    marginLeft: 20,
+    marginRight: 120,
+  },
+    buttonText: {
+    color: "#00000",
+    fontWeight: "bold",
+    marginLeft: 20,
+    marginRight: 25,
   },
   iconc: {
     width: 23,

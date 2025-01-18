@@ -26,13 +26,26 @@ const BikeCartScreen: React.FC = () => {
   };
 
   // Handler para la selección de pestaña
+ 
   const handleTabPress = (tab: string) => {
+    console.log(`Tab seleccionado: ${tab}`);
+    // Aquí puedes agregar lógica según la tab seleccionada, como navegar a diferentes pantallas
     switch (tab) {
       case 'home':
         navigation.navigate('Home');
         break;
+      case 'support':
+        navigation.navigate('Support')
+        break;
       case 'bikes':
-        navigation.navigate('Catalogo');
+        // Lógica para la pestaña de bicicletas
+        navigation.navigate('Catalogo'); // Ejemplo de navegación
+        break;
+      case 'discounts':
+      navigation.navigate('Descuento');
+        break;
+      case 'profile':
+       navigation.navigate('Profile');
         break;
       default:
         break;

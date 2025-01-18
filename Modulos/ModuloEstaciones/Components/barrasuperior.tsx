@@ -1,17 +1,14 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
+import { View, Text, StyleSheet, Image } from 'react-native';
 
 // Componente reutilizable para la barra superior
-const TopBar: React.FC<{ onSettingsPress: () => void }> = ({ onSettingsPress }) => {
+const TopBar: React.FC<{ onSettingsPress: () => void }> = ({ }) => {
   return (
     <View style={styles.topBarContainer}>
       {/* Logo de la aplicación */}
       <Image source={require('../../images/remakeoficial3.png')} style={styles.logo} /> 
       {/* Botón de configuración y perfil del usuario */}
       <View style={styles.rightContainer}>
-        <TouchableOpacity onPress={onSettingsPress} style={styles.settingsButton}>
-          <Image source={require('../../images/setting.png')} style={styles.settingsIcon} />
-        </TouchableOpacity>
         <View style={styles.profileContainer}>
           <Text style={styles.username}>TreisyCat</Text>
           <Image source={require('../../images/Ellipse8.png')} style={styles.profileImage} />
